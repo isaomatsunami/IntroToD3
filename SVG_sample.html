@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>SVGの要素</title>
+</head>
+<body>
+<h1>SVGの要素</h1>
+<svg height=360 width=360>
+	<circle cx=100 cy=100 r=50 fill="blue"/>
+	<rect x=200 y=50 height=50 width=150 fill="red"/>
+	<line x1=200 y1=125 x2=350 y2=125 stroke="green" stroke-width="2"/>
+	<ellipse cx="120" cy="190" rx="50" ry="30" fill="yellow"/>
+	<polygon points="50,250 150,250 175,300 75,270 50,350" stroke="black" stroke-width="1" fill="lightgreen"/>
+	<g transform="translate(180,160)">
+		<path d="M 20,180Q50,0,100,100T180,20" stroke="black" fill="none" />
+	</g>
+	<text x=250 y=350>テキスト</text>
+</svg>
+<p>マスクやクリップ、グラデーションの機能もある。</p>
+</body>
+</html>

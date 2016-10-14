@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>d3サンプルの4</title>
+	<script src="./images/d3.v4.min.js"></script>
+</head>
+<body>
+	<h1>セ・リーグの勝利数(2014-16)</h1>
+	<div id="chart"></div>
+	<button id="year2014">2014年</button>
+	<button id="year2015">2015年</button>
+	<button id="year2016">2016年</button>
+</body>
+<script>
+var mydata = [ // 2014-16のデータ
+	{name:"広島", color:"#FF0000", wins:[74, 69, 89]},
+	{name:"巨人", color:"#FFA500", wins:[82, 75, 71]},
+	{name:"DeNA",color:"#6495ED", wins:[67, 62, 69]},
+	{name:"阪神", color:"#FFFF00", wins:[75, 70, 64]},
+	{name:"ヤクルト", color:"#0000CD", wins:[60, 76, 64]},
+	{name:"中日", color:"#0000FF", wins:[67, 62, 58]}
+];
+
+window.onload = function(){
+	var chart = d3.select("#chart");
+	var svg = chart.append("svg");
+		svg.attr("width",  800);
+		svg.attr("height", 400);
+
+	var xScale = d3.scaleLinear()
+		.domain([0, 90])
+		.range([100, 750]);
+
+	var names = mydata.map(function(e){return e.name});
+	// names = [球団名,球団名...]になる
+
+	var yScale = d3.scaleBand()
+		.domain( names )
+ 		.range([50, 350])
+		.padding(0.25);
+
+	var selectIndex = 0; // 何年のデータを表示するか、内部状態として把握する
+
+	var bars = svg
+		.selectAll("rect")
+		.data(mydata);
+	var bars_exist = bars;         // すでにSVG要素があるもの(この段階では要素ゼロ)
+	var bars_enter = bars.enter(); // データはあるが、SVG要素がないもの
+
+	bars_enter.append("rect")
+		.attr("x", xScale(0))
+		.attr("y", function(d,i){return yScale(d.name);})
+		.attr("width", function(d,i){return xScale(d.wins[selectIndex]) - xScale(0);})
+		.attr("height", function(d,i){return yScale.bandwidth();})
+		.attr("fill", function(d,i){return d.color;});
+
+	// もう一度selectAllで選択しなおす
+	bars_exist = svg.selectAll("rect");
+
+	// 再描画のための関数
+	function redraw(){
+		// 棒の長さをtransition付きで更新する
+		bars_exist.transition().duration(500)
+			.attr("width", function(d,i){return xScale(d.wins[selectIndex]) - xScale(0);});
+	}
+
+	// axisは、scaleの設定を読み取って自動で軸を作る関数
+	var xAxis = d3.axisTop(xScale);
+	var yAxis = d3.axisLeft(yScale);
+	// axisを適用する
+	svg.append("g").attr("transform", "translate(0,30)").call(xAxis);
+	svg.append("g").attr("transform", "translate(100,0)").call(yAxis);
+
+	// ボタンの設定
+	d3.select("#year2014").on("click", function(){
+		selectIndex = 0;
+		redraw();
+	});
+	d3.select("#year2015").on("click", function(){
+		selectIndex = 1;
+		redraw();
+	});
+	d3.select("#year2016").on("click", function(){
+		selectIndex = 2;
+		redraw();
+	});
+
+};
+</script>
+</html>

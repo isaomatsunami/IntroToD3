@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>d3サンプルの3</title>
+	<script src="./images/d3.v4.min.js"></script>
+</head>
+<body>
+	<h1>d3サンプルの3:棒グラフ</h1>
+	<div id="chart"></div>
+</body>
+<script>
+var mydata = [4, 8, 15, 16, 23, 42]; // 表現したいデータ
+
+window.onload = function(){
+	var chart = d3.select("#chart");
+	var svg = chart.append("svg");
+		svg.attr("width",  500);
+		svg.attr("height", 400);
+
+	var xScale = d3.scaleLinear()
+		.domain([0, d3.max(mydata)])         // 修正箇所	
+		.range([100, 450]);
+
+	var yScale = d3.scaleBand()
+		.domain( d3.range(mydata.length) )   // 修正箇所
+ 		.range([50, 350])
+		.padding(0.25);
+
+	var bars = svg
+		.selectAll("rect")
+		.data(mydata);
+	var bars_enter = bars.enter();
+
+	bars_enter.append("rect")
+		.attr("x", xScale(0))
+		.attr("y", function(d,i){return yScale(i);})
+		.attr("width", function(d,i){return xScale(d) - xScale(0);})
+		.attr("height", function(d,i){return yScale.bandwidth();})
+		.attr("fill", "blue");
+
+	// axisは、scaleの設定を読み取って自動で軸を作る関数
+	var xAxis = d3.axisTop(xScale);
+	var yAxis = d3.axisLeft(yScale);
+	// axisを適用する
+	svg.append("g").attr("transform", "translate(0,30)").call(xAxis);
+	svg.append("g").attr("transform", "translate(100,0)").call(yAxis);
+
+};
+</script>
+</html>

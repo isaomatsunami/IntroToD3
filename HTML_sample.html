@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML5の要素</title>
+</head>
+<!--
+<style>
+h1 {font-size:22px;color:red;}
+</style>
+-->
+<body>
+<h1>HTML5の要素</h1>
+<!--
+	<h1 style="font-size:48px;color:yellow;">HTML5の要素</h1>
+-->
+
+<p> HTMLで<a href="https://www.w3.org/TR/html/">規定されている要素</a>(element)は以下の通り。<a href="http://www.html5.jp/tag/elements/">日本語版</a>もある。</p>
+<p> 章立てのマークアップとして、body, article, section, nav, aside, header, footer, addressがある。</p>
+<p> グループ化のマークアップとして、p, hr, pre, blockquote, ol, ul, li, dl, dt, dd, figure, figcaption, div, mainがある。</p>
+<p> 文章のマークアップとして、a, em, strong, small, s, cite, q, dfn, abbr, data, time, code, var, samp, kbd, sub, sup, i, b, u, mark, ruby, rb, rt, rtc, rp, bdi, bdo, span, wbr, ins, delがある。</p>
+<p> 埋め込み要素のマークアップとして、img, iframe, embed, object, param, video, audio, source, track, map, areaがある。</p>
+<p> テーブル要素のマークアップとして、table, caption, colgroup, col, tbody, thead, tfoot, tr, td, thがある。</p>
+<p> フォーム要素のマークアップとして、form, label, input, button, select, datalist, optgroup, option, textarea, keygen, output, progress, meter, fieldset, legendがある。</p>
+
+<h4>img要素</h4>
+	<img src="images/image.png" alt="img"></img>
+<h4>iframe要素</h4>
+	<iframe src="./HTML_sample.html"></iframe>
+<h4>video要素</h4>
+	<video src="images/video.mp4" controls></video>
+<h4>audio要素</h4>
+	<audio src="images/audio.mp3" controls></audio>
+<h4>リスト要素</h4>
+	<ul>
+		<li>ulリスト-1</li>
+		<li>ulリスト-2</li>
+	</ul>
+	<ol>
+		<li>olリスト-1</li>
+		<li>olリスト-2</li>
+	</ol>
+<h4>table要素</h4>
+	<table>
+		<caption>キャプション</caption>
+		<thead>
+			<tr><th>表見出し</th><th>表見出し</th><th>表見出し</th></tr>
+		</thead>
+		<tbody>
+			<tr><th>項目1-1</th><td>項目1-2</td><td>項目1-3</td></tr>
+			<tr><th>項目2-1</th><td>項目2-2</td><td>項目2-3</td></tr>
+		</tbody>
+	</table>
+<h4>form要素</h4>
+	<form action="" method="post">
+		<label>input要素：<input type="text" name="name" size="40"></label>
+		<label>select要素：
+			<select name="name">
+				<option value="A">AAAAA</option>
+				<option value="B">BBBBB</option>
+			</select>
+		</label>
+		<fieldset>
+			<legend>fieldsetとlegend</legend>
+				<p>すべてが実装されているとは限らない。</p>
+				<p><label><input type="radio">ラジオボタン</label></p>
+				<p><label><input type="checkbox">チェックボックス</label></p>
+				<p><label><input type="datetime" value="2012-02-16T20:40+09:00">datetime</label></p>
+				<p><label><input type="date" value="2016-10-30">date</label></p>
+				<p><label><input type="month" min="2011-01" max="2013-12" value="2010-01">month</label></p>
+				<p><label><input type="week" value="2012-W07">week</label></p>
+				<p><label><input type="number" value="5">number</label></p>
+				<p><label><input type="range" min="0" max="50" value="0">range</label></p>
+				<p><label><input type="color">color</label></p>
+		</fieldset>
+		<textarea rows="10" cols="50">TEXTAREA</textarea>
+	</form>
+	<button>button要素</button>
+	<progress value="50" max="100"></progress>
+</body>
+</html>

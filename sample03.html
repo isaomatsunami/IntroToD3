@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>d3サンプルの2</title>
+	<script src="./images/d3.v4.min.js"></script>
+</head>
+<body>
+	<h1>d3サンプルの2:棒グラフ</h1>
+	<div id="chart"></div>
+</body>
+<script>
+var mydata = [4, 8, 15, 16, 23, 42]; // 表現したいデータ
+
+window.onload = function(){
+	var chart = d3.select("#chart");
+	var svg = chart.append("svg");
+		svg.attr("width",  500);
+		svg.attr("height", 400);
+
+	var xScale = d3.scaleLinear() // x軸用scaleを作る
+		.domain([0, 50])          // 入力範囲
+		.range([100, 450]);       // 出力範囲
+
+	var yScale = d3.scaleBand()   // y軸用scaleを作る
+		.domain([0,1,2,3,4,5])    // 入力範囲
+ 		.range([50, 350])
+		.padding(0.25);           // 棒の間隔の比率
+
+	var bars = svg
+		.selectAll("rect")        // rect要素を全部集める（最初はゼロ個）
+		.data(mydata);            // データと一対一対応させる
+	// dataメソッドによって、以下の３種類が作られる
+	var bars_exist = bars;        // データもrectもあるもの(最初はゼロ)
+	var bars_enter = bars.enter();// データはあるがrectがないもの
+	var bars_exit  = bars.exit(); // データはあるがrectがないもの（最初はゼロ）
+
+	bars_enter.append("rect")
+		.attr("x", xScale(0))     // 右上のx座標
+		.attr("y", function(d,i){return yScale(i);})     // 右上のy座標
+		.attr("width", function(d,i){return xScale(d) - xScale(0);})
+		.attr("height", function(d,i){return yScale.bandwidth();})
+		.attr("fill", "blue");
+
+};
+</script>
+</html>

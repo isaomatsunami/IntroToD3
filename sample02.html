@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>d3サンプルの１</title>
+	<script src="./images/d3.v4.min.js"></script>
+</head>
+<body>
+	<h1>d3サンプルの１</h1>
+	<div id="chart"></div>
+</body>
+<script>
+window.onload = function(){
+	var chart = d3.select("#chart");
+	var svg = chart.append("svg");
+		svg.attr("width", 500);
+		svg.attr("height", 500);
+	var circle = svg.append("circle");
+		circle.attr("cx", 250);
+		circle.attr("cy", 250);
+		circle.attr("r", 200);
+		circle.attr("fill", "red");
+};
+</script>
+</html>

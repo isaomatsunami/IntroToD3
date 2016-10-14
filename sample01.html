@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>イベント駆動の例</title>
+</head>
+<body>
+<h1 id="midashi">イベント駆動の例</h1>
+</body>
+<script>
+// まず、見出しを変数hに代入する。
+var h = document.getElementById("midashi");
+// clickというイベントが起きたときに実行するコードをonClickとする。
+// eはクリックしたときのマウスに関わる情報(MouseEventオブジェクト)
+function onClick(e){
+	// console.log(e);
+	e.target.style.color = "red";
+};
+// 見出しに対して、onClickを登録する
+h.addEventListener("click", onClick);
+</script>
+</html>
