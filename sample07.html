@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>d3サンプルの5</title>
+	<script src="./images/jquery-3.1.1.min.js"></script>
+	<script src="./images/highcharts.js"></script>
+</head>
+<body>
+	<h1>HighChart版</h1>
+	<div id="chart"></div>
+</body>
+<script>
+window.onload = function(){
+
+    $('#chart').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'セ・リーグ勝利数(2014-16)'
+        },
+        xAxis: {
+            categories: ["広島","巨人","DeNA","阪神","ヤクルト","中日"],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'シーズン勝利数',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: '勝'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [
+        	{name: "2014年", data:[74,82,67,75,60,67]},
+        	{name: "2015年", data:[69,75,62,70,76,62]},
+        	{name: "2016年", data:[89,71,69,64,64,58]}
+        ]
+    });
+};
+</script>
+</html>
